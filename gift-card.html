@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body class="body">
 
     {% layout 'gift_card' %}
 
@@ -24,35 +24,37 @@
           <div class="site-header__logo h1 text-center">
           <a href="https://cdn.shopify.com/" 
           class="site-header__link site-header__logo-link">
-        <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/Flow_Logo_White_Flow.png?v=1621821636" alt="logo" style="width: 280px;"></a>
+        <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/Flow_Logo_White_Flow.png?v=1621821636" alt="logo" style="width: 180px;"></a>
         </div>
       
       
-         <div style="padding: 10px 30px; background-color: #E2DED3;">
-        <h1>Your Flow Gift Card</h1>
-    </div>
         {% unless gift_card.enabled %}
-          <p class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</p>
+        <p class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</p>
         {% endunless %}
         {% assign gift_card_expiry_date = gift_card.expires_on | date: format: "basic" %}
         {% if gift_card.expired and gift_card.enabled %}
-          <p class="giftcard__tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</p>
+        <p class="giftcard__tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</p>
         {% endif %}
         {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
-          <p class="giftcard__tag giftcard__tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</p>
+        <p class="giftcard__tag giftcard__tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</p>
         {% endif %}
-      </header>
-      
-      <div class="giftcard-wrapper">
+    </header>
+    
+    <div class="giftcard-wrapper">
         <main class="giftcard center" role="main">
+            <div style="padding: 40px 30px 5px 30px; background-color: #E2DED3; text-align: center;">
+           <h1>Your Flow Gift Card</h1>
+        </div>
           <div class="giftcard__wrap">
-            <p class="text-center>
-            <a href="https://cd.shopify.com/">
-                <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/GiftCard_1_2.png?v=1627944209" style= "width: 100%; height: 100%;" alt="giftcard">
+           
+            <a href="https://cdn.shopify.com/">
+                <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/GiftCard_1_2.png?v=1627944209" alt="giftcard" style="display: block;
+                margin-left: auto;
+                margin-right: auto">
             </a>
-            </p>
+            
       
-            {%- assign initial_value_size = formatted_initial_value | size -%}
+            <!-- {%- assign initial_value_size = formatted_initial_value | size -%}
             <div class="h1 giftcard__amount{% if initial_value_size > 6 %} giftcard__amount--medium{% endif %}">
               {% if gift_card.balance != gift_card.initial_value %}
                 <span class="giftcard__tooltip">
@@ -60,51 +62,94 @@
                 </span>
               {% endif %}
               <strong>{{ formatted_initial_value }}</strong>
-            </div>
+            </div> -->
       
-            {%- assign code_size = gift_card.code | format_code | size -%}
-            <div class="giftcard__code">
-              <div class="giftcard__code__inner">
-                <input type="text"
-                  class="giftcard__code__text{% if gift_card.expired or gift_card.enabled != true %} disabled{% endif %}"
-                  id="GiftCardDigits"
-                  value="{{ gift_card.code | format_code }}"
-                  aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
-                  readonly />
+        </div>
+
+        <div class="giftcard-text">
+            {% assign gift_card_expiry_date = gift_card.expires_on | date: "%m/%d/%y" %}
+            <h4> Expiry date
+                <span><strong>
+                  {{ t: expiry: gift_card_expiry_date | date: "%m/%d/%y" %}}
+              </strong></span>
+              Value
+              <span><strong>
+                {{ formatted_initial_value }}
+            </strong></span>
+            </h4>
+        </div>
+
+        <!-- <div class="giftcard-text" style="background-color: #E2DED3; padding: 20px 40px; padding-bottom: 40px;">
+            
+        
+              <div class="expiry-date" style="float: left; margin-left: 100px;">
+                Expiry date
+                <span><strong>
+                  {{ gift_card.expiry| format_code}}
+              </strong></span>
+            </div> -->
+
+              <!-- <div class="balance-amount" style="float: right; margin-right: 100px;">
+                  Value
+                  <span><strong>
+                    {{ gift_card.balance | format_code}}
+                </strong></span>
               </div>
-            </div>
-          </div>
       
+        </div> -->
+
+        {%- assign code_size = gift_card.code | format_code | size -%}
+        <div class="giftcard__code" style="margin-top:30px; margin-bottom: 30px;">
+          <div class="giftcard__code__inner">
+              <h1 style="margin: 0 auto;">
+                {{ gift_card.code | format_code }}
+              </h1>
+            <!-- <input type="text"
+              class="giftcard__code__text{% if gift_card.expired or gift_card.enabled != true %} disabled{% endif %}"
+              id="GiftCardDigits"
+              value="{{ gift_card.code | format_code }}"
+              aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
+              readonly /> -->
+          </div>
           <p class="text-center">
             {{ 'gift_cards.issued.redeem_html' | t: value: formatted_initial_value_stripped }}
           </p>
-      
-          <div id="QrCode" class="giftcard__qr-code" data-identifier="{{ gift_card.qr_identifier }}"></div>
-      
-          <ul class="giftcard-action-list text-center">
-            <li class="giftcard-action-list__item">
-              <a href="{{ shop.url }}"
-                class="btn"
+        </div>
+        <div class="buttons" style="text-align: center; margin-bottom: 60px;">
+        <a href="{{ shop.url }}"
+                class="btn shop-btn"
                 target="_blank"
                 rel="noopener"
                 aria-describedby="a11y-new-window-message">
                   {{ 'gift_cards.issued.shop_link' | t }}
                   {% include 'icon-arrow-right' %}
+                  
               </a>
-            </li>
-            <li>
-              <button type="button" class="btn btn--secondary print-link" onclick="window.print();">
-                {{ 'gift_cards.issued.print' | t }}
-              </button>
-            </li>
-            {% if gift_card.pass_url %}
-              <li>
-                <a class="giftcard__apple-wallet" href="{{ gift_card.pass_url }}">
-                  <img class="giftcard__apple-wallet-image" src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}">
-                </a>
-              </li>
-            {% endif %}
-          </ul>
+
+
+              <div class="print-button" style="display: inline;">
+        <button type="button" class="btn print-link" onclick="window.print();">
+    <a src="https://cdn.shopify.com/">
+    <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/print_asset.png?v=1628036236" alt="print_image" class="print-image">
+</a>
+            {{ 'gift_cards.issued.print' | t }}
+          </button>
+              </div>
+        </div>
+      
+
+        <div class="termAndCondition-text">
+        <h3 style="text-align: center;">TERMS AND CONDITIONS</h3>
+        <ul class="list-termAndCond"> 
+            <li class="description">It may only be used for purchases on the honeyflow.com website</li>
+            <li class="description">Not redeemable for purchases from a Flow Reseller</li> 
+            <li class="description">Valid for 3 years from the date of purchase</li>
+            <li class="description">Any remaining credit will be stored online for your next purchase until completely redeemed or at 3 years from the date of Gift Card purchase</li> 
+            <li class="description">Cannot be exchanged for cash</li>
+        </ul>
+    </div>
+      
+    
         </main>
       </div>
     </body>  

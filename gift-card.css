@@ -224,12 +224,49 @@ $color-video-bg: {{ background_color_poster }};
 
 
 /*================ #Giftcard Template ================*/
+.body{
+    max-width: 900px;
+}
 
 .giftcard__apple-wallet-image {
   display: block;
   margin: 0 auto;
 }
 
+.giftcard-text{
+    padding: 10px 30px; 
+    background-color: #E2DED3; 
+    padding: 20px 40px; 
+    padding-bottom: 100px; 
+    text-align: center;
+}
+
+.shop-btn{
+    border-radius: 30px;
+    padding: 10px 30px; 
+    margin-right:10px;
+}
+.print-link{
+    border-radius: 30px;
+    padding: 10px 30px; border: solid;
+    background-color: #fff;
+    border-width: 1px; margin-left:10px;
+}
+.print-image{
+    width:30px; 
+    height: 30px; 
+    float:left; 
+    margin-right: 8px;
+}
+.description{
+    display:list-item; 
+    list-style: disc;
+}
+.list-termAndCond{
+    list-style:disc inside none;
+    width: 60%; 
+    margin-left: 180px;
+}
 /*================ Print Giftcard Styles ================*/
 @media print {
   @page {
@@ -259,7 +296,8 @@ $color-video-bg: {{ background_color_poster }};
   padding: 0 ($gutter-site-mobile / 2);
 
   .site-header__logo {
-    padding-left: 0;
+    /* padding-left: 0; */
+    padding: 40px;
   }
 
   .site-header__logo-image {
@@ -278,13 +316,14 @@ $color-video-bg: {{ background_color_poster }};
 }
 
 .giftcard-wrapper {
-  max-width: 31rem;
+  /* max-width: 31rem; */
   margin: 0 auto;
+  max-width: 900px;
 }
 
-.giftcard__header {
+/* .giftcard__header {
   margin-top: $gutter-site * 2;
-}
+} */
 
 .giftcard__tag--active {
   opacity: 0.6;
@@ -294,12 +333,12 @@ $color-video-bg: {{ background_color_poster }};
 .giftcard__wrap {
   position: relative;
 /*   margin: ($gutter-site / 2) ($gutter-site / 2) $gutter-site; */
-  background-color: $color-giftcard-bg;
-  border-radius: 10px;
+  background-color: #E2DED3;
+  /* border-radius: 10px; */
 
   img {
     position: relative;
-    display: block;
+    /* display: block; */
 /*     border-radius: 10px; */
     z-index: $z-index-giftcard-image;
   }
@@ -307,7 +346,7 @@ $color-video-bg: {{ background_color_poster }};
   // White corner caps that overlap gift card image
   &::before,
   &::after {
-    content: '';
+    /* content: ''; */
     position: absolute;
     width: 47px; // asset width
     height: 47px; // asset width
@@ -326,24 +365,20 @@ $color-video-bg: {{ background_color_poster }};
     right: -1px;
   }
 }
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .text-center{
   text-align:center;
 }
 
 /*================ Gift card code ================*/
 .giftcard__code {
-  position: absolute;
+  /* position: absolute; */
   text-align: center;
-  width: 90%;
+  /* width: 90%; */
   z-index: $z-index-giftcard-code;
   bottom: 8%;
   left: 50%;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
 }
 
 .giftcard__code--medium {
@@ -358,11 +393,12 @@ $color-video-bg: {{ background_color_poster }};
   width: 100%;
   display: inline-block;
   vertical-align: baseline;
-  background-color: $color-giftcard-light;
+  /* background-color: $color-giftcard-light; */
   padding: 0.5em;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 0 1px $color-giftcard-shadow;
-  box-shadow: 0 0 0 1px $color-giftcard-shadow;
+  /* border-radius: 4px; */
+  border: none;
+  /* -webkit-box-shadow: 0 0 0 1px $color-giftcard-shadow; */
+  /* box-shadow: 0 0 0 1px $color-giftcard-shadow; */
 }
 
 .giftcard__code__text {
