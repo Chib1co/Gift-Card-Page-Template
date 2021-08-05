@@ -13,7 +13,7 @@
 </head>
 
 
-<body class="body">
+<body>
 
     {% layout 'gift_card' %}
 
@@ -28,7 +28,7 @@
         </div>
       
       
-        {% unless gift_card.enabled %}
+<!--         {% unless gift_card.enabled %}
         <p class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</p>
         {% endunless %}
         {% assign gift_card_expiry_date = gift_card.expires_on | date: format: "basic" %}
@@ -37,7 +37,7 @@
         {% endif %}
         {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
         <p class="giftcard__tag giftcard__tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</p>
-        {% endif %}
+        {% endif %} -->
     </header>
     
     <div class="giftcard-wrapper">
@@ -68,14 +68,14 @@
 
         <div class="giftcard-text">
             {% assign gift_card_expiry_date = gift_card.expires_on | date: "%m/%d/%y" %}
-            <h4> Expiry date
-                <span><strong>
-                  {{ t: expiry: gift_card_expiry_date | date: "%m/%d/%y" %}}
-              </strong></span>
+            <h4 class="text-giftCard"> Expiry date
+                <span class="strong">              
+                   {{gift_card_expiry_date}}
+              </span>
               Value
-              <span><strong>
+              <span class="strong">
                 {{ formatted_initial_value }}
-            </strong></span>
+            </span>
             </h4>
         </div>
 

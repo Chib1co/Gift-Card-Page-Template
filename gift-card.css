@@ -237,7 +237,7 @@ $color-video-bg: {{ background_color_poster }};
     padding: 10px 30px; 
     background-color: #E2DED3; 
     padding: 20px 40px; 
-    padding-bottom: 100px; 
+    /* padding-bottom: 100px;  */
     text-align: center;
 }
 
@@ -266,6 +266,22 @@ $color-video-bg: {{ background_color_poster }};
     list-style:disc inside none;
     width: 60%; 
     margin-left: 180px;
+}
+.text-giftCard{
+    font-size: 24px;
+}
+.strong{
+    font-size:26px;
+    font-weight: 800;
+}
+
+@media screen and (max-width: 600px) {
+    .list-termAndCond {
+        list-style: disc inside none;
+        width: 80%;
+        margin-left: 55px;
+    }
+    
 }
 /*================ Print Giftcard Styles ================*/
 @media print {
@@ -319,6 +335,7 @@ $color-video-bg: {{ background_color_poster }};
   /* max-width: 31rem; */
   margin: 0 auto;
   max-width: 900px;
+  margin-bottom: 20px;
 }
 
 /* .giftcard__header {
@@ -520,21 +537,32 @@ $color-video-bg: {{ background_color_poster }};
 
 /*================ Medium-down width ================*/
 @media screen and (max-width: 580px) {
-  .giftcard {
+  /* .giftcard {
     padding-top: $gutter-site / 2;
-  }
+  } */
 
   .print-link {
-    display: none;
+    margin-top: 20px;
+    width: 250px;
+    font-size: 12px;
+    margin-left: 0px;
   }
+  .shop-btn{
+    margin-right:0px;
+    width:250px
+}
+.template-giftcard .site-header__logo {
+    padding: 20px;
+}
+
 }
 
 /*================ Small width ================*/
 @media screen and (max-width: 400px) {
-  .giftcard__wrap::before,
+  /* .giftcard__wrap::before,
   .giftcard__wrap::after {
     display: none;
-  }
+  } */
 
   .giftcard__code {
     font-size: 0.75em;
@@ -547,6 +575,8 @@ $color-video-bg: {{ background_color_poster }};
   .giftcard__code--small {
     font-size: 0.55em;
   }
+  .shop-btn{
+    margin-right:0px;
 }
 
 
