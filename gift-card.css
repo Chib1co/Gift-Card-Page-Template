@@ -274,8 +274,8 @@ $color-video-bg: {{ background_color_poster }};
     font-size:26px;
     font-weight: 800;
 }
-.text-Gotham
-.shop-btn{
+.text-Gotham,
+.btn{
     font-family:Gotham Rounded;
 }
 
