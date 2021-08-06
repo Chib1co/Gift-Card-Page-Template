@@ -264,8 +264,8 @@ $color-video-bg: {{ background_color_poster }};
 }
 .list-termAndCond{
     list-style:disc inside none;
-    width: 60%; 
-    margin-left: 180px;
+    width: 80%; 
+    margin-left: 140px;
 }
 .text-giftCard{
     font-size: 24px;
@@ -273,6 +273,10 @@ $color-video-bg: {{ background_color_poster }};
 .strong{
     font-size:26px;
     font-weight: 800;
+}
+.text-Gotham
+.shop-btn{
+    font-family:Gotham Rounded;
 }
 
 @media screen and (max-width: 600px) {
@@ -336,6 +340,7 @@ $color-video-bg: {{ background_color_poster }};
   margin: 0 auto;
   max-width: 900px;
   margin-bottom: 20px;
+  font-family: Gotham Rounded;
 }
 
 /* .giftcard__header {
@@ -578,8 +583,7 @@ $color-video-bg: {{ background_color_poster }};
   .shop-btn{
     margin-right:0px;
 }
-
-
+}
 /*============================================================================
   #Print Styles
 ==============================================================================*/

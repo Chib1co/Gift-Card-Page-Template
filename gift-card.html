@@ -1,156 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
- 
-<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="theme-color" content="{{ settings.color_button }}">
         <link rel="canonical" href="{{ canonical_url }}">
         <title>Document</title>
-       
-
-</head>
-
-
-<body>
-
-    {% layout 'gift_card' %}
-
-    {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
-    {%- assign formatted_initial_value_stripped = formatted_initial_value | strip_html -%}
-    
-    <header class="giftcard__header text-center" role="banner">
-          <div class="site-header__logo h1 text-center">
-          <a href="https://cdn.shopify.com/" 
-          class="site-header__link site-header__logo-link">
-        <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/Flow_Logo_White_Flow.png?v=1621821636" alt="logo" style="width: 180px;"></a>
+    </head>
+    <body>
+        {% layout 'gift_card' %}
+        {%- assign formatted_initial_value = gift_card.initial_value |
+        money_without_trailing_zeros: gift_card.currency -%}
+        {%- assign formatted_initial_value_stripped = formatted_initial_value |
+        strip_html -%}
+        <header class="giftcard__header text-center" role="banner">
+            <div class="site-header__logo h1 text-center">
+                <a href="{{shop.url}}"
+                    class="site-header__link site-header__logo-link">
+                    <img
+                        src="https://cdn.shopify.com/s/files/1/0435/5201/4494/files/Flow-Logo_Horizontal_rgb_med.jpg?v=1628123981"
+                        alt="logo" style="width: 180px;">
+                </a>
+            </div>
+        </header>
+        <div class="giftcard-wrapper">
+            <main class="giftcard center" role="main">
+                <div style="padding: 40px 30px 5px 30px; background-color:
+                    #E2DED3; text-align: center;">
+                    <h1 class="text-Gotham">Your Flow Gift Card</h1>
+                </div>
+                <div class="giftcard__wrap">
+                    <img
+                        src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/GiftCard_1_2.png?v=1627944209"
+                        alt="giftcard" style="display: block;
+                        margin-left: auto;
+                        margin-right: auto">
+                </div>
+                <div class="giftcard-text">
+                    {% assign gift_card_expiry_date = gift_card.expires_on |
+                    date: "%m/%d/%y" %}
+                    <h4 class="text-giftCard text-Gotham"> Expiry date
+                        <span class="strong">
+                            {{gift_card_expiry_date}}
+                        </span>
+                        Value
+                        <span class="strong">
+                            {{ formatted_initial_value }}
+                        </span>
+                    </h4>
+                </div>
+                {%- assign code_size = gift_card.code | format_code | size -%}
+                <div class="giftcard__code" style="margin-top:30px;
+                    margin-bottom: 30px;">
+                    <div class="giftcard__code__inner">
+                        <h1 class="text-Gotham" style="margin: 0 auto;">
+                            {{ gift_card.code | format_code }}
+                        </h1>
+                    </div>
+                    <p class="text-center text-Gotham">
+                        {{ 'gift_cards.issued.redeem_html' | t: value:
+                        formatted_initial_value_stripped }}
+                    </p>
+                </div>
+                <div class="buttons" style="text-align: center; margin-bottom:
+                    60px;">
+                    <a href="{{ shop.url }}"
+                        class="btn shop-btn"
+                        target="_blank"
+                        rel="noopener"
+                        aria-describedby="a11y-new-window-message">
+                        {{ 'gift_cards.issued.shop_link' | t }}
+                        {% include 'icon-arrow-right' %}
+                    </a>
+                    <div class="print-button" style="display: inline;">
+                        <button type="button" class="btn print-link"
+                            onclick="window.print();">
+                            <a src="https://cdn.shopify.com/">
+                                <img
+                                    src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/print_asset.png?v=1628036236"
+                                    alt="print_image" class="print-image">
+                            </a>
+                            {{ 'gift_cards.issued.print' | t }}
+                        </button>
+                    </div>
+                </div>
+                <div class="termAndCondition-text">
+                    <h3 class="text-Gotham" style="text-align: center;">TERMS AND CONDITIONS</h3>
+                    <ul class="list-termAndCond">
+                        <li class="description">It may only be used for
+                            purchases on the {{shop.url}} website</li>
+                        <li class="description">Not redeemable for purchases
+                            from a Flow Reseller</li>
+                        <li class="description">Valid for 3 years from the date
+                            of purchase</li>
+                        <li class="description">Any remaining credit will be
+                            stored online for your next purchase until
+                            completely redeemed or at 3 years from the date of
+                            Gift Card purchase</li>
+                        <li class="description">Cannot be exchanged for cash</li>
+                    </ul>
+                </div>
+            </main>
         </div>
-      
-      
-<!--         {% unless gift_card.enabled %}
-        <p class="giftcard__tag">{{ 'gift_cards.issued.disabled' | t }}</p>
-        {% endunless %}
-        {% assign gift_card_expiry_date = gift_card.expires_on | date: format: "basic" %}
-        {% if gift_card.expired and gift_card.enabled %}
-        <p class="giftcard__tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</p>
-        {% endif %}
-        {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
-        <p class="giftcard__tag giftcard__tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</p>
-        {% endif %} -->
-    </header>
-    
-    <div class="giftcard-wrapper">
-        <main class="giftcard center" role="main">
-            <div style="padding: 40px 30px 5px 30px; background-color: #E2DED3; text-align: center;">
-           <h1>Your Flow Gift Card</h1>
-        </div>
-          <div class="giftcard__wrap">
-           
-            <a href="https://cdn.shopify.com/">
-                <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/GiftCard_1_2.png?v=1627944209" alt="giftcard" style="display: block;
-                margin-left: auto;
-                margin-right: auto">
-            </a>
-            
-      
-            <!-- {%- assign initial_value_size = formatted_initial_value | size -%}
-            <div class="h1 giftcard__amount{% if initial_value_size > 6 %} giftcard__amount--medium{% endif %}">
-              {% if gift_card.balance != gift_card.initial_value %}
-                <span class="giftcard__tooltip">
-                  <span class="giftcard__tooltip-label">{{ 'gift_cards.issued.remaining_html' | t: balance: gift_card.balance | money }}</span>
-                </span>
-              {% endif %}
-              <strong>{{ formatted_initial_value }}</strong>
-            </div> -->
-      
-        </div>
-
-        <div class="giftcard-text">
-            {% assign gift_card_expiry_date = gift_card.expires_on | date: "%m/%d/%y" %}
-            <h4 class="text-giftCard"> Expiry date
-                <span class="strong">              
-                   {{gift_card_expiry_date}}
-              </span>
-              Value
-              <span class="strong">
-                {{ formatted_initial_value }}
-            </span>
-            </h4>
-        </div>
-
-        <!-- <div class="giftcard-text" style="background-color: #E2DED3; padding: 20px 40px; padding-bottom: 40px;">
-            
-        
-              <div class="expiry-date" style="float: left; margin-left: 100px;">
-                Expiry date
-                <span><strong>
-                  {{ gift_card.expiry| format_code}}
-              </strong></span>
-            </div> -->
-
-              <!-- <div class="balance-amount" style="float: right; margin-right: 100px;">
-                  Value
-                  <span><strong>
-                    {{ gift_card.balance | format_code}}
-                </strong></span>
-              </div>
-      
-        </div> -->
-
-        {%- assign code_size = gift_card.code | format_code | size -%}
-        <div class="giftcard__code" style="margin-top:30px; margin-bottom: 30px;">
-          <div class="giftcard__code__inner">
-              <h1 style="margin: 0 auto;">
-                {{ gift_card.code | format_code }}
-              </h1>
-            <!-- <input type="text"
-              class="giftcard__code__text{% if gift_card.expired or gift_card.enabled != true %} disabled{% endif %}"
-              id="GiftCardDigits"
-              value="{{ gift_card.code | format_code }}"
-              aria-label="{{ 'gift_cards.issued.gift_card_code' | t }}"
-              readonly /> -->
-          </div>
-          <p class="text-center">
-            {{ 'gift_cards.issued.redeem_html' | t: value: formatted_initial_value_stripped }}
-          </p>
-        </div>
-        <div class="buttons" style="text-align: center; margin-bottom: 60px;">
-        <a href="{{ shop.url }}"
-                class="btn shop-btn"
-                target="_blank"
-                rel="noopener"
-                aria-describedby="a11y-new-window-message">
-                  {{ 'gift_cards.issued.shop_link' | t }}
-                  {% include 'icon-arrow-right' %}
-                  
-              </a>
-
-
-              <div class="print-button" style="display: inline;">
-        <button type="button" class="btn print-link" onclick="window.print();">
-    <a src="https://cdn.shopify.com/">
-    <img src="https://cdn.shopify.com/s/files/1/0329/0251/2771/files/print_asset.png?v=1628036236" alt="print_image" class="print-image">
-</a>
-            {{ 'gift_cards.issued.print' | t }}
-          </button>
-              </div>
-        </div>
-      
-
-        <div class="termAndCondition-text">
-        <h3 style="text-align: center;">TERMS AND CONDITIONS</h3>
-        <ul class="list-termAndCond"> 
-            <li class="description">It may only be used for purchases on the honeyflow.com website</li>
-            <li class="description">Not redeemable for purchases from a Flow Reseller</li> 
-            <li class="description">Valid for 3 years from the date of purchase</li>
-            <li class="description">Any remaining credit will be stored online for your next purchase until completely redeemed or at 3 years from the date of Gift Card purchase</li> 
-            <li class="description">Cannot be exchanged for cash</li>
-        </ul>
-    </div>
-      
-    
-        </main>
-      </div>
-    </body>  
-    </html>
+    </body>
+</html>
