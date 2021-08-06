@@ -227,6 +227,17 @@ $color-video-bg: {{ background_color_poster }};
 .body{
     max-width: 900px;
 }
+h1{
+    font-size: 46px;
+    font-weight: 400;
+}
+h3{
+    font-size: 16px;
+    font-weight: 700;
+}
+p{
+    font-size: 16px;
+}
 
 .giftcard__apple-wallet-image {
   display: block;
@@ -266,18 +277,24 @@ $color-video-bg: {{ background_color_poster }};
     list-style:disc inside none;
     width: 80%; 
     margin-left: 140px;
+    font-size: 14px;
+}
+.termAndCondition-text{
+    padding-top: 40px;
 }
 .text-giftCard{
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: 400;
 }
 .strong{
-    font-size:26px;
-    font-weight: 800;
+    font-size:24px;
+    font-weight: 700;
 }
 .text-Gotham,
 .btn{
     font-family:Gotham Rounded;
 }
+
 
 @media screen and (max-width: 600px) {
     .list-termAndCond {
@@ -340,7 +357,7 @@ $color-video-bg: {{ background_color_poster }};
   margin: 0 auto;
   max-width: 900px;
   margin-bottom: 20px;
-  font-family: Gotham Rounded;
+  font-family: Gotham Rounded light;
 }
 
 /* .giftcard__header {
